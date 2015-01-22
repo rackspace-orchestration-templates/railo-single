@@ -66,7 +66,7 @@ parameters:
     label: Administrator IP address
     description: The IP address from where the administrator should have access.
     type: string
-    default: 127.0.0.1
+    default: "127.0.0.1"
 
   railo_installer_location:
     label: Railo Installer Location
@@ -105,11 +105,11 @@ resources:
             # Run updates
             apt-get update && apt-get dist-upgrade -y && apt-get autoremove -y
             # Install Apache
-            apt-get install apache2
+            apt-get install apache2 -y
             # Download and Install
             wget -ct0 %railo_installer_location%
             chmod +x railo*
-            ./railo* --mode unattended --roilopass "%roilo_admin_pass%"
+            ./railo* --mode unattended --railopass "%railo_admin_pass%"
             # Open and Enable ufw
             ufw allow 22
             ufw allow 80
@@ -117,7 +117,7 @@ resources:
             ufw --force enable
           params:
             "%railo_installer_location%": { get_param: railo_installer_location }
-            "%railo_admin_pass%": { get_attr: railo_admin_pass }
+            "%railo_admin_pass%": { get_attr: [railo_admin_pass, value] }
             "%railo_admin_ip%": { get_param: railo_admin_ip }
 
 outputs:
@@ -127,7 +127,7 @@ outputs:
 
   railo_admin_pass:
     description: Railo Administration Password
-    value: { get_attr: railo_admin_pass }
+    value: { get_attr: [railo_admin_pass, value] }
 
   railo_url:
     value:

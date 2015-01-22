@@ -22,7 +22,8 @@ def check():
 
     assert file.exists("/opt/railo/install.log"), "Railo install log missing."
     assert port.is_listening(80), "Port 80 is not listening."
+    assert port.is_listening(8888), "Port 8888 is not listening."
     assert process.is_up("java"), "The java process is not running."
-    assert process.is_up("apache2"), "The apache2 process is not running."
     assert service.is_enabled("apache2"), "The apache2 service is not enabled."
+    assert service.is_enabled("railo_ctl"), "The Railo service is not enabled."
     assert apache_is_responding(), "Apache is not responding."
