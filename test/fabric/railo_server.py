@@ -8,7 +8,7 @@ from envassert import detect, file, package, port, process, service
 
 def apache_is_responding():
     with hide('running', 'stdout'):
-        site = "https://localhost/"
+        site = "http://localhost/"
         homepage = run("wget --quiet --output-document - --no-check-certificate %s" % site)
         if re.search('Apache2 Ubuntu Default Page', homepage):
             return True
