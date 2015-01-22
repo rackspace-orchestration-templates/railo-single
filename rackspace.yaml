@@ -2,6 +2,7 @@ schema-version: 1.0.0
 application-family: 
 application-name: Railo
 application-version: 4.2.1
+github-repository-name: railo-single
 flavor: Single Linux server
 flavor-weight: 1
 reach-info:
