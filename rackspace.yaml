@@ -1,0 +1,41 @@
+schema-version: 1.0.0
+application-family: 
+application-name: Railo
+application-version: 4.2.1
+flavor: Single Linux server
+flavor-weight: 1
+reach-info:
+  tattoo:
+  icon-20x20:
+hidden_outputs:
+  - private_key
+abstract: |
+  Single Linux server running [Railo](http://www.getrailo.org/).
+instructions: |
+  #### Welcome to Railo
+  This will deploy a single Linux server running
+  [Railo](http://www.getrailo.org/index.cfm/documentation/).
+  This deployment does not come with any preconfigured Railo applications.
+  You will need to [add sites to the server manually](https://github.com/getrailo/railo/wiki/Installation-InstallerDocumentation-LinAddingSites).
+
+  #### Logging in via SSH
+  The private key provided in the passwords section can be used to login as
+  root via SSH.  We have an article on how to use these keys with [Mac OS X and
+  Linux](http://www.rackspace.com/knowledge_center/article/logging-in-with-a-ssh-private-key-on-linuxmac)
+  as well as [Windows using
+  PuTTY](http://www.rackspace.com/knowledge_center/article/logging-in-with-a-ssh-private-key-on-windows).
+
+  #### Admin Interface
+  The admin interface for Railo runs on port 8888 which isn't exposed
+  by default by this deployment. If you didn't provide an admin user
+  ip address during setup, login using ssh and issue the following command
+  where <ip> is replaced by your IP address:
+  'ufw allow from <ip> to any port 8888'
+
+  #### Railo Service
+  Railo can be controlled using the standard 'service' command.
+
+  service railo_ctl status
+  service railo_ctl stop
+  service railo_ctl start
+  service railo_ctl restart
