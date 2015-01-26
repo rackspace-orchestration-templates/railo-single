@@ -19,6 +19,11 @@ parameter_groups:
   - railo_installer_location
   - server_name
 
+- label: Railo Settings
+  parameters:
+  - railo_admin_ip
+  - railo_installer_location
+
 parameters:
 
   flavor:
