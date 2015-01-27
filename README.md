@@ -64,8 +64,9 @@ RAM for the provisioned server.
  (Default: 1 GB Performance)
 * `image`: Server image used for all servers that are created as a part of this
 deployment
- (Default: Ubuntu 14.04 LTS (Trusty Tahr))
+ (Default: Ubuntu 14.04 LTS (Trusty Tahr) (PVHVM))
 * `server_name`: The instance name (Default: railo)
+* `railo_user`: The user Railo runs as. (Default: railo)
 * `railo_admin_ip`: The IP address from where the administrator should have access. (Default: 127.0.0.1)
 * `railo_installer_location`: Location of the Railo installer file. (Default: http://www.getrailo.org/railo/remote/download42/4.2.1.008/tomcat/linux/railo-4.2.1.008-pl0-linux-x64-installer.run
 )
