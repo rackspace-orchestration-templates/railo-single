@@ -20,6 +20,7 @@ parameter_groups:
 
 - label: Railo Settings
   parameters:
+  - railo_user
   - railo_admin_ip
   - railo_installer_location
 
@@ -63,6 +64,12 @@ parameters:
   server_name:
     label: Server Hostname
     description: The instance name
+    type: string
+    default: railo
+
+  railo_user:
+    label: Railo Service User
+    description: The user Railo runs as.
     type: string
     default: railo
 
@@ -113,7 +120,7 @@ resources:
             # Download and Install
             wget -ct0 %railo_installer_location%
             chmod +x railo*
-            ./railo* --mode unattended --railopass "%railo_admin_pass%"
+            ./railo* --mode unattended --railopass "%railo_admin_pass%" --systemuser "%railo_user%"
             # Open and Enable ufw
             ufw allow 22
             ufw allow 80
@@ -123,6 +130,7 @@ resources:
             "%railo_installer_location%": { get_param: railo_installer_location }
             "%railo_admin_pass%": { get_attr: [railo_admin_pass, value] }
             "%railo_admin_ip%": { get_param: railo_admin_ip }
+            "%railo_user%": { get_param: railo_user }
 
 outputs:
   private_key:
