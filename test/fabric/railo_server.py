@@ -1,9 +1,12 @@
 # coding=utf8
 
 import re
+import os
 
-from fabric.api import env, hide, run, task
+from fabric.api import env, hide, run, task, get
 from envassert import detect, file, package, port, process, service
+
+
 
 
 def apache_is_responding():
@@ -27,3 +30,25 @@ def check():
     assert service.is_enabled("apache2"), "The apache2 service is not enabled."
     assert service.is_enabled("railo_ctl"), "The Railo service is not enabled."
     assert apache_is_responding(), "Apache is not responding."
+
+
+@task
+def artifacts():
+    env.platform_family = detect.detect()
+
+    # Logs to pull
+    logs = ['/root/cfn-userdata.log',
+            '/root/heat-script.log']
+
+    # Artifacts target location
+    try:
+        os.environ['CIRCLE_ARTIFACTS']
+    except:
+        artifacts = 'tmp'
+    else:
+        artifacts = os.environ['CIRCLE_ARTIFACTS']
+
+    # For each log, get it down
+    for log in logs:
+        target = artifacts + "/%(host)s/%(path)s"
+        get(log, target)

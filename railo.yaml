@@ -116,7 +116,7 @@ resources:
             # Run updates
             apt-get update && apt-get dist-upgrade -y && apt-get autoremove -y
             # Install Apache
-            apt-get install apache2 mysql-server php5 libapache2 -y
+            apt-get install apache2 mysql-server php5 libapache2-mod-php5 -y
             # Download and Install
             wget -ct0 %railo_installer_location%
             chmod +x railo*
