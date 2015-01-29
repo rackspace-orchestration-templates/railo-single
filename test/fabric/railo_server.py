@@ -1,27 +1,16 @@
 # coding=utf8
+from fabric.api import env, task
+from envassert import detect, file, port, process, service
 
-import re
-import os
-
-from fabric.api import env, hide, run, task, get
-from envassert import detect, file, package, port, process, service
-
-
-
-
-def apache_is_responding():
-    with hide('running', 'stdout'):
-        site = "http://localhost/"
-        homepage = run("wget --quiet --output-document - --no-check-certificate %s" % site)
-        if re.search('Apache2 Ubuntu Default Page', homepage):
-            return True
-        else:
-            return False
+from hot.utils.test import get_artifacts, http_check, local_http_check
 
 
 @task
 def check():
     env.platform_family = detect.detect()
+
+    site = "http://localhost/"
+    string = "Apache2 Ubuntu Default Page"
 
     assert file.exists("/opt/railo/install.log"), "Railo install log missing."
     assert port.is_listening(80), "Port 80 is not listening."
@@ -29,7 +18,8 @@ def check():
     assert process.is_up("java"), "The java process is not running."
     assert service.is_enabled("apache2"), "The apache2 service is not enabled."
     assert service.is_enabled("railo_ctl"), "The Railo service is not enabled."
-    assert apache_is_responding(), "Apache is not responding."
+    assert http_check(site, string), "Apache is not responding."
+    assert local_http_check(env.host, string), "Apache is not responding remotely."
 
 
 @task
@@ -40,15 +30,4 @@ def artifacts():
     logs = ['/root/cfn-userdata.log',
             '/root/heat-script.log']
 
-    # Artifacts target location
-    try:
-        os.environ['CIRCLE_ARTIFACTS']
-    except:
-        artifacts = 'tmp'
-    else:
-        artifacts = os.environ['CIRCLE_ARTIFACTS']
-
-    # For each log, get it down
-    for log in logs:
-        target = artifacts + "/%(host)s/%(path)s"
-        get(log, target)
+    get_artifacts(logs)
