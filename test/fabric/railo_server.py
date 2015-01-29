@@ -19,7 +19,6 @@ def check():
     assert service.is_enabled("apache2"), "The apache2 service is not enabled."
     assert service.is_enabled("railo_ctl"), "The Railo service is not enabled."
     assert http_check(site, string), "Apache is not responding."
-    assert local_http_check(env.host, string), "Apache is not responding remotely."
 
 
 @task
