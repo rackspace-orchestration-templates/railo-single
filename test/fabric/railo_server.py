@@ -2,7 +2,7 @@
 from fabric.api import env, task
 from envassert import detect, file, port, process, service
 
-from hot.utils.test import get_artifacts, http_check, local_http_check
+from hot.utils.test import get_artifacts, http_check
 
 
 @task
