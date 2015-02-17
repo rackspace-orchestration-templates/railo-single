@@ -3,4 +3,4 @@ machine:
     version: 2.7.8
 test:
   override:
-  - hot test
+  - hot test --ci-parallel
