@@ -1,5 +1,5 @@
 schema-version: 1.0.0
-application-family: 
+application-family: Application Frameworks
 application-name: Railo
 application-version: 4.2.1
 github-repository-name: railo-single
