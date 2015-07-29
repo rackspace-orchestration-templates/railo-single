@@ -40,3 +40,5 @@ instructions: |
   service railo_ctl stop
   service railo_ctl start
   service railo_ctl restart
+description: |
+  Single Linux server running [Railo 4.2.1](http://www.getrailo.org/).
