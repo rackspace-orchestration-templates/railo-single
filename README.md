@@ -1,4 +1,4 @@
-[![Circle CI](https://circleci.com/gh/rackspace-orchestration-templates/railo-single.png?style=badge)](https://circleci.com/gh/rackspace-orchestration-templates/railo-single)
+[![Circle CI](https://circleci.com/gh/rackspace-orchestration-templates/railo-single/tree/master.png?style=shield)](https://circleci.com/gh/rackspace-orchestration-templates/railo-single)
 Description
 ===========
 
@@ -76,10 +76,10 @@ Outputs
 Once a stack comes online, use `heat output-list` to see all available outputs.
 Use `heat output-show <OUTPUT NAME>` to get the value of a specific output.
 
-* `private_key`: SSH Private Key 
-* `railo_admin_pass`: Railo Administration Password 
-* `railo_url`: Railo URL 
-* `server_ip`: Server IP 
+* `private_key`: SSH Private Key
+* `railo_admin_pass`: Railo Administration Password
+* `railo_url`: Railo URL
+* `server_ip`: Server IP
 
 For multi-line values, the response will come in an escaped form. To get rid of
 the escapes, use `echo -e '<STRING>' > file.txt`. For vim users, a substitution
