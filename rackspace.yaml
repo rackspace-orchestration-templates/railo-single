@@ -11,7 +11,7 @@ reach-info:
 hidden_outputs:
   - private_key
 abstract: |
-  Single Linux server running [Railo](http://www.getrailo.org/).
+  Railo is an open-source ColdFusion markup language (CFML) engine.
 instructions: |
   #### Welcome to Railo
   This will deploy a single Linux server running
