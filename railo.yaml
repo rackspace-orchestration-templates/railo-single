@@ -1,7 +1,7 @@
 heat_template_version: 2013-05-23
 
 description: |
-  A template that deploys open source Railo onto a single Linux server.
+  Single Linux server running [Railo 4.2.1](http://www.getrailo.org/).
 
 parameter_groups:
 
